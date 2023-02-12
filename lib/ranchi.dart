@@ -25,15 +25,15 @@ class _RanchiWidgetState extends State<RanchiWidget>
     );
 
     _scaleAnimation =
-        Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+        Tween<double>(begin: 0.4, end: 1.0).animate(CurvedAnimation(
       parent: _controller,
-      curve: const Interval(0.0, 0.5, curve: Curves.easeIn),
+      curve: const Interval(0.4, 0.7, curve: Curves.easeIn),
     ));
 
     _rotateAnimation =
-        Tween<double>(begin: 0.0, end: pi * 2).animate(CurvedAnimation(
+        Tween<double>(begin: 0.4, end: pi * 2).animate(CurvedAnimation(
       parent: _controller,
-      curve: const Interval(0.5, 1.0, curve: Curves.easeOut),
+      curve: const Interval(0.7, 1.0, curve: Curves.easeOut),
     ));
 
     _controller.addStatusListener((status) {
@@ -48,6 +48,12 @@ class _RanchiWidgetState extends State<RanchiWidget>
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -59,42 +65,66 @@ class _RanchiWidgetState extends State<RanchiWidget>
           child: AnimatedBuilder(
               animation: _controller,
               builder: (context, _) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    MText(
-                      letter: "R",
-                      scaleValue: _scaleAnimation.value,
-                      rotateValue: _rotateAnimation.value,
-                    ),
-                    MText(
-                      letter: "A",
-                      scaleValue: _scaleAnimation.value,
-                      rotateValue: _rotateAnimation.value,
-                    ),
-                    MText(
-                      letter: "N",
-                      scaleValue: _scaleAnimation.value,
-                      rotateValue: _rotateAnimation.value,
-                    ),
-                    MText(
-                      letter: "C",
-                      scaleValue: _scaleAnimation.value,
-                      rotateValue: _rotateAnimation.value,
-                    ),
-                    MText(
-                      letter: "H",
-                      scaleValue: _scaleAnimation.value,
-                      rotateValue: _rotateAnimation.value,
-                    ),
-                    MText(
-                      letter: "I",
-                      scaleValue: _scaleAnimation.value,
-                      rotateValue: _rotateAnimation.value,
-                    ),
-                  ],
-                );
+                return Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        height: MediaQuery.of(context).size.height,
+                        width: 120,
+                        decoration: BoxDecoration(
+                          color: Colors.orange,
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(color: Colors.black, width: 1.0),
+                        ),
+                      ),
+                      const SizedBox(width: 20),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          MText(
+                            letter: "R",
+                            scaleValue: _scaleAnimation.value,
+                            rotateValue: _rotateAnimation.value,
+                          ),
+                          MText(
+                            letter: "A",
+                            scaleValue: _scaleAnimation.value,
+                            rotateValue: _rotateAnimation.value,
+                          ),
+                          MText(
+                            letter: "N",
+                            scaleValue: _scaleAnimation.value,
+                            rotateValue: _rotateAnimation.value,
+                          ),
+                          MText(
+                            letter: "C",
+                            scaleValue: _scaleAnimation.value,
+                            rotateValue: _rotateAnimation.value,
+                          ),
+                          MText(
+                            letter: "H",
+                            scaleValue: _scaleAnimation.value,
+                            rotateValue: _rotateAnimation.value,
+                          ),
+                          MText(
+                            letter: "I",
+                            scaleValue: _scaleAnimation.value,
+                            rotateValue: _rotateAnimation.value,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(width: 20),
+                      Container(
+                        height: MediaQuery.of(context).size.height,
+                        width: 120,
+                        decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(color: Colors.black, width: 1.0),
+                        ),
+                      ),
+                    ]);
               }),
         ),
       ),

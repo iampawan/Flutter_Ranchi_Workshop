@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'home.dart';
+import 'ranchi.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -9,6 +9,6 @@ void main() {
       primarySwatch: Colors.purple,
       useMaterial3: true,
     ),
-    home: const HomePage(),
+    home: const RanchiWidget(),
   ));
 }
